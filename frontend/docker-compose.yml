@@ -1,0 +1,163 @@
+version: "3.8"
+services:
+  # שירות להוספת מוצר
+  add_product:
+    build:
+      context: ./backend/add_product
+    container_name: add_product_service
+    ports:
+      - "4000:4000"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות להוספת מוצר לעגלה
+  add_to_cart:
+    build:
+      context: ./backend/add_to_cart
+    container_name: add_to_cart_service
+    ports:
+      - "4001:4001"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות לתשלום
+  checkout:
+    build:
+      context: ./backend/checkout
+    container_name: checkout_service
+    ports:
+      - "4002:4002"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות למחיקת מוצר
+  delete_product:
+    build:
+      context: ./backend/delete_product
+    container_name: delete_product_service
+    ports:
+      - "4003:4003"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות לעריכת מוצר בעגלה
+  edit_product_in_cart:
+    build:
+      context: ./backend/edit_product_in_cart
+    container_name: edit_product_in_cart_service
+    ports:
+      - "4004:4004"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות לצפייה בעגלת הקניות
+  get_cart:
+    build:
+      context: ./backend/get_cart
+    container_name: get_cart_service
+    ports:
+      - "4005:4005"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות להתחברות
+  login:
+    build:
+      context: ./backend/login
+    container_name: login_service
+    ports:
+      - "4006:4006"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות להרשמה
+  register:
+    build:
+      context: ./backend/register
+    container_name: register_service
+    ports:
+      - "4007:4007"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות לאיפוס עגלה
+  reset_cart:
+    build:
+      context: ./backend/reset_cart
+    container_name: reset_cart_service
+    ports:
+      - "4008:4008"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות לחיפוש מוצרים
+  search_products:
+    build:
+      context: ./backend/search_products
+    container_name: search_products_service
+    ports:
+      - "4009:4009"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות למיון מוצרים
+  sort_cart:
+    build:
+      context: ./backend/sort_cart
+    container_name: sort_cart_service
+    ports:
+      - "4010:4010"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות לעדכון כמות
+  update_quantity:
+    build:
+      context: ./backend/update_quantity
+    container_name: update_quantity_service
+    ports:
+      - "4011:4011"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות חיפוש קולי
+  voice_recognition:
+    build:
+      context: ./backend/Voice_Recognition
+    container_name: voice_recognition_service
+    ports:
+      - "4012:4012"
+    environment:
+      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+    restart: always
+
+  # שירות Frontend
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend_service
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    restart: always
+
+  # שירות מסד נתונים (MongoDB)
+  mongodb_service:
+    image: mongo
+    container_name: mongodb_service
+    ports:
+      - "27017:27017"
+    restart: always
