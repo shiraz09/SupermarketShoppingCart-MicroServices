@@ -1,4 +1,4 @@
-version: "3.8"
+
 services:
   # שירות להוספת מוצר
   add_product:
@@ -8,7 +8,7 @@ services:
     ports:
       - "4000:4000"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות להוספת מוצר לעגלה
@@ -19,7 +19,7 @@ services:
     ports:
       - "4001:4001"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות לתשלום
@@ -30,7 +30,7 @@ services:
     ports:
       - "4002:4002"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות למחיקת מוצר
@@ -41,7 +41,7 @@ services:
     ports:
       - "4003:4003"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות לעריכת מוצר בעגלה
@@ -52,7 +52,7 @@ services:
     ports:
       - "4004:4004"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות לצפייה בעגלת הקניות
@@ -63,7 +63,7 @@ services:
     ports:
       - "4005:4005"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות להתחברות
@@ -74,7 +74,7 @@ services:
     ports:
       - "4006:4006"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות להרשמה
@@ -85,7 +85,7 @@ services:
     ports:
       - "4007:4007"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות לאיפוס עגלה
@@ -96,7 +96,7 @@ services:
     ports:
       - "4008:4008"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות לחיפוש מוצרים
@@ -107,7 +107,7 @@ services:
     ports:
       - "4009:4009"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות למיון מוצרים
@@ -118,7 +118,7 @@ services:
     ports:
       - "4010:4010"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
   # שירות לעדכון כמות
@@ -129,19 +129,9 @@ services:
     ports:
       - "4011:4011"
     environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
+      - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
-  # שירות חיפוש קולי
-  voice_recognition:
-    build:
-      context: ./backend/Voice_Recognition
-    container_name: voice_recognition_service
-    ports:
-      - "4012:4012"
-    environment:
-      - MONGO_URI=mongodb://mongodb_service:27017/shopping_cart
-    restart: always
 
   # שירות Frontend
   frontend:
@@ -154,10 +144,3 @@ services:
     tty: true
     restart: always
 
-  # שירות מסד נתונים (MongoDB)
-  mongodb_service:
-    image: mongo
-    container_name: mongodb_service
-    ports:
-      - "27017:27017"
-    restart: always

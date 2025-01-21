@@ -1,4 +1,0 @@
-Flask
-pymongo
-SpeechRecognition
-PyAudio
