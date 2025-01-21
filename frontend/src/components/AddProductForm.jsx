@@ -3,7 +3,7 @@ import { addProduct } from "../api";
 
 const AddProductForm = () => {
   const [product, setProduct] = useState({
-    name: "",
+    name: "apple", // ברירת מחדל לאפשרות הראשונה
     category: "",
     price: 0,
     description: "",
@@ -22,12 +22,17 @@ const AddProductForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Add Product</h2>
-      <input
-        type="text"
-        placeholder="Name"
+
+      {/* Dropdown לבחירת שם המוצר */}
+      <select
         value={product.name}
         onChange={(e) => setProduct({ ...product, name: e.target.value })}
-      />
+      >
+        <option value="apple">Apple</option>
+        <option value="banana">Banana</option>
+        <option value="pineapple">Pineapple</option>
+      </select>
+
       <input
         type="text"
         placeholder="Category"
