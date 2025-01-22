@@ -171,4 +171,46 @@
       padding: 20px;
     }
   }
+  /* כפתור צפייה בעגלה */
+.view-cart-button {
+    padding: 12px 20px;
+    background-color: #48bb78;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+  }
   
+  .view-cart-button:hover {
+    background-color: #38a169;
+    transform: scale(1.05);
+  }
+  body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
