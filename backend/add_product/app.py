@@ -15,7 +15,7 @@ def add_product():
         "name": data["name"],
         "category": data["category"],
         "price": data["price"],
-        "description": data["description"]
+      
     }
     result = db.products.insert_one(product)
     return jsonify({"message": "Product added successfully!", "id": str(result.inserted_id)}), 201

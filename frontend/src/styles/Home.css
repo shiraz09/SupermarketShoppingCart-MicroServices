@@ -1,0 +1,174 @@
+/* כללי */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f3f4f6;
+    color: #333;
+    line-height: 1.8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px; /* מרווח מסביב לגוף */
+  }
+  
+  /* קישורים */
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #007B9F;
+  }
+  
+  /* Container מרכזי */
+  .main-container {
+    max-width: 1200px; /* הגבלת רוחב התוכן */
+    width: 100%;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header */
+  .header {
+    background-color: #1a202c;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  /* דף הבית */
+  .homepage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  
+  .content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-top: 20px;
+  }
+  
+  /* כרטיסים */
+  .form-card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+    background: linear-gradient(145deg, #ffffff, #f9fafb);
+  }
+  
+  .form-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  h2 {
+    font-size: 2rem;
+    color: #1a202c;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  /* טפסים */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  input,
+  select,
+  textarea {
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #edf2f7;
+    transition: background-color 0.3s ease, border 0.3s ease;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    background-color: #ffffff;
+    border-color: #3182ce;
+    box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+  }
+  
+  button {
+    padding: 15px;
+    background-color: #3182ce;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #2b6cb0;
+    transform: scale(1.05);
+  }
+  
+  /* עיצוב הכפתור והקלטים */
+  input,
+  select,
+  button {
+    transition: all 0.3s ease;
+  }
+  
+  input:focus,
+  select:focus,
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(49, 130, 206, 0.8);
+  }
+  
+  /* ריספונסיביות */
+  @media (max-width: 768px) {
+    .header h1 {
+      font-size: 2rem;
+    }
+  
+    .content {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+  
+    .form-card {
+      width: 90%;
+      max-width: 500px;
+      padding: 20px;
+    }
+  }
+  
