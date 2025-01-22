@@ -62,6 +62,7 @@ const AddProductForm = () => {
     try {
       await addProduct(product);
       alert("Product added successfully!");
+      localStorage.setItem("product", product);
     } catch {
       alert("Failed to add product");
     }
