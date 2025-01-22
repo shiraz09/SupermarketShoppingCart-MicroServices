@@ -4,6 +4,8 @@ import HomePage from "./pages/HomePage";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import ProductListPage from "./pages/ProductListPage";
+import CartPage from "./pages/CartPage";
+
 
 const App = () => {
   return (
@@ -24,6 +26,9 @@ const App = () => {
 
           {/* דף הבית */}
           <Route path="/home" element={<HomePage />} />
+
+          {/* דף עגלת קניות */}
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </div>
     </Router>

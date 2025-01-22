@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const SearchProducts = () => {
-  // רשימת המוצרים מתוך הקטגוריות
   const categories = {
     Fruits: [
       { name: "Apple", price: 2 },
@@ -136,9 +135,7 @@ const SearchProducts = () => {
       { name: "Hamster Cage", price: 25 },
     ],
   };
-  
 
-  // איחוד כל המוצרים למערך יחיד
   const allProducts = Object.entries(categories).flatMap(([category, products]) =>
     products.map((product) => ({ ...product }))
   );
@@ -154,7 +151,6 @@ const SearchProducts = () => {
       return;
     }
 
-    // חיפוש לפי תחילת מילה
     const filteredResults = allProducts.filter((product) =>
       product.name.toLowerCase().startsWith(query.trim().toLowerCase())
     );
@@ -168,11 +164,18 @@ const SearchProducts = () => {
     setResults(filteredResults);
   };
 
+  const handleAddToCart = (product) => {
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const updatedCart = [...existingCart, product];
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    alert(`${product.name} added to cart!`);
+  };
+
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
       <h2>Search Products</h2>
 
-      {/* שדה חיפוש */}
+      {/* Search Input */}
       <div style={{ marginBottom: "20px", display: "flex", justifyContent: "center" }}>
         <input
           type="text"
@@ -204,10 +207,10 @@ const SearchProducts = () => {
         </button>
       </div>
 
-      {/* הודעת שגיאה */}
+      {/* Error Message */}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {/* תוצאות חיפוש */}
+      {/* Search Results */}
       <ul style={{ listStyle: "none", padding: 0 }}>
         {results.map((product, index) => (
           <li
@@ -218,9 +221,28 @@ const SearchProducts = () => {
               border: "1px solid #ddd",
               borderRadius: "4px",
               textAlign: "left",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            <strong>{product.name}</strong> - ${product.price}
+            <div>
+              <strong>{product.name}</strong>  {product.price}$
+            </div>
+            <button
+              onClick={() => handleAddToCart(product)}
+              style={{
+                padding: "2px 6px",
+                fontSize: "1rem",
+                backgroundColor: "#38a169",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              Add to Cart
+            </button>
           </li>
         ))}
       </ul>
