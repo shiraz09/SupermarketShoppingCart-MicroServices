@@ -1,0 +1,36 @@
+.main-container {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background-color: #2b7cb8;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.categories-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.category-button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.category-button.active {
+  background-color: #2b7cb8;
+  color: white;
+}
+
+.products-container {
+  padding: 20px;
+}

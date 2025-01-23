@@ -1,0 +1,7 @@
+Flask
+pymongo
+werkzeug
+pyjwt
+flask_cors
+pytest
+requests

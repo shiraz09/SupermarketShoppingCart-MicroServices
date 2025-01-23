@@ -1,0 +1,141 @@
+/* בסיס לכפתורים */
+button {
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
+}
+
+/* כפתורי פלוס ומינוס */
+.quantity-button {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  color: #333;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.quantity-button:hover {
+  background-color: #e0e0e0;
+  border-color: #999;
+}
+
+/* כפתור "Update Quantity" */
+.update-button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.update-button:hover {
+  background-color: #0056b3;
+}
+
+/* כפתור "Delete" */
+.delete-button {
+  padding: 8px 15px;
+  background-color: #ff4d4d;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.delete-button:hover {
+  background-color: #cc0000;
+}
+
+/* כפתור "Reset Cart" */
+.reset-button {
+  background-color: #ff9900;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.reset-button:hover {
+  background-color: #cc7a00;
+}
+
+/* כפתור "Proceed to Payment" */
+.pay-button {
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.pay-button:hover {
+  background-color: #218838;
+}
+
+/* כפתור "Back to Home" */
+.back-button {
+  background-color: #6c757d;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}
+
+/* התאמה לרשימת עגלה */
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.cart-item:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.sort-button {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
+}
+
+.sort-button:hover {
+  background-color: #0056b3;
+}
+

@@ -1,0 +1,17 @@
+{
+    "name": "delete-product-service",
+    "version": "1.0.0",
+    "description": "A Node.js service to delete products from the database",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "mongoose": "^7.3.1",
+      "cors": "^2.8.5"
+    },
+    "author": "Your Name",
+    "license": "MIT"
+  }
+  

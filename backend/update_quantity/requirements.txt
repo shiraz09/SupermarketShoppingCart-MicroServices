@@ -1,0 +1,6 @@
+Flask
+pymongo
+flask_cors
+pytest
+requests
+responses
