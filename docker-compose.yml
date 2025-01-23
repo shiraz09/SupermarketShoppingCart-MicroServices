@@ -9,6 +9,7 @@ services:
       - "4000:4000"
     environment:
       - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
+      
     restart: always
 
   # שירות לתשלום
@@ -121,3 +122,18 @@ services:
       - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
 
+  add_product_nodejs:
+    build:
+      context: ./nodejs-services/add_product
+    container_name: add_product_nodejs_service
+    ports:
+      - "5007:5000"
+    restart: always
+
+  delete_product_nodejs:
+    build:
+      context: ./nodejs-services/delete_product
+    container_name: delete_product_nodejs_service
+    ports:
+      - "5001:5000"
+    restart: always
