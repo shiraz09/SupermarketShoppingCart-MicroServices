@@ -8,6 +8,18 @@ const RegisterForm = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    // ולידציה בסיסית לפרטים
+    if (username.length < 3) {
+      alert("Username must be at least 3 characters long.");
+      return;
+    }
+
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long.");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:4007/register", {
         method: "POST",
@@ -16,7 +28,9 @@ const RegisterForm = () => {
         },
         body: JSON.stringify({ username, password }),
       });
+
       const data = await response.json();
+
       if (response.ok) {
         alert("Registered successfully! Now you can log in.");
         navigate("/login"); // מעבר לעמוד התחברות
@@ -25,7 +39,7 @@ const RegisterForm = () => {
       }
     } catch (error) {
       console.error("Error registering:", error);
-      alert("An error occurred.");
+      alert("An error occurred while registering.");
     }
   };
 

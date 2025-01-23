@@ -15,9 +15,13 @@ def login():
     username = data["username"]
     password = data["password"]
 
+    # Find the user in the database
     user = db.users.find_one({"username": username})
     if user and check_password_hash(user["password"], password):
-        return jsonify({"message": "Login successful"}), 200
+        # Return a successful response with the username
+        return jsonify({"message": "Login successful", "username": username}), 200
+
+    # Return an error if login fails
     return jsonify({"error": "Invalid username or password"}), 401
 
 if __name__ == "__main__":

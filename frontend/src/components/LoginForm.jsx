@@ -16,9 +16,15 @@ const LoginForm = () => {
         },
         body: JSON.stringify({ username, password }),
       });
+
       const data = await response.json();
+
       if (response.ok) {
-        navigate("/home"); 
+        // שמירת שם המשתמש ב-Local Storage
+        localStorage.setItem("username", data.username);
+
+        alert("Login successful!");
+        navigate("/home"); // ניתוב לעמוד הבית
       } else {
         alert(data.error || "Login failed!");
       }
