@@ -111,13 +111,38 @@ const AddProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const username = localStorage.getItem("username"); // קבלת שם המשתמש מ-Local Storage
+    if (!username) {
+      alert("No user logged in. Please log in first.");
+      navigate("/login");
+      return;
+    }
+
     try {
-      const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-      const updatedCart = [...existingCart, product];
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      alert("Product added successfully!");
-    } catch {
-      alert("Failed to add product");
+      const response = await fetch("http://localhost:4000/add_product", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username, // שליחת שם המשתמש לשרת
+          name: product.name,
+          category: product.category,
+          price: product.price,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Product added successfully!");
+      } else {
+        alert(`Failed to add product: ${data.error}`);
+      }
+    } catch (error) {
+      alert("An error occurred while adding the product.");
+      console.error(error);
     }
   };
 

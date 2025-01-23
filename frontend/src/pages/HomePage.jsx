@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SearchProducts from "../components/SearchProducts";
 import "../styles/Home.css";
 
@@ -18,6 +19,7 @@ const HomePage = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("Fruits");
   const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
 
   // הוספת מוצר לעגלה
   const handleAddToCart = (product, quantity) => {
@@ -52,10 +54,19 @@ const HomePage = () => {
     setCart(cart.filter((item) => item._id !== productId));
   };
 
+  // התנתקות מהמערכת
+  const handleLogout = () => {
+    localStorage.clear(); // מחיקת כל הנתונים מה-localStorage
+    navigate("/login"); // מעבר לעמוד ההתחברות
+  };
+
   return (
     <div className="main-container">
       <header className="header">
         <h1>The Digital Shopping Cart</h1>
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
       </header>
 
       <div className="content">

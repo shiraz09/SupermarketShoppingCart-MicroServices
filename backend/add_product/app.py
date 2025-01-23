@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS  # Import CORS
+from flask_cors import CORS
 from pymongo import MongoClient
 import subprocess
 
@@ -15,13 +15,25 @@ try:
     @app.route('/add_product', methods=['POST'])
     def add_product():
         data = request.get_json()
+        username = data.get("username")  # קבלת שם המשתמש מהבקשה
         product = {
             "name": data["name"],
             "category": data["category"],
             "price": data["price"],
         }
-        result = db.products.insert_one(product)
-        return jsonify({"message": "Product added successfully!", "id": str(result.inserted_id)}), 201
+
+        # בדוק אם המשתמש קיים
+        user = db.users.find_one({"username": username})
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+
+        # הוסף את המוצר לעגלת המשתמש
+        db.users.update_one(
+            {"username": username},
+            {"$push": {"cart": product}}
+        )
+
+        return jsonify({"message": "Product added to user's cart successfully!"}), 200
 
     if __name__ == "__main__":
         app.run(host='0.0.0.0', port=4000)

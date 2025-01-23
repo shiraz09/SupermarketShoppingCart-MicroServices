@@ -18,9 +18,14 @@ const LoginForm = () => {
       });
 
       const data = await response.json();
+
       if (response.ok) {
+        // שמירת שם המשתמש ב-Local Storage
+        localStorage.setItem("username", data.username);
+
         alert("Login successful!");
-        navigate("/home"); // מעבר לעמוד הבית
+        navigate("/home"); // ניתוב לעמוד הבית
+
       } else {
         alert(data.error || "Login failed!");
       }
