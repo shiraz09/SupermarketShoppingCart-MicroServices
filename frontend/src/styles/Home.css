@@ -1,155 +1,36 @@
-/* כללי */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Poppins', 'Arial', sans-serif;
-  background-color: #f9fafb;
-  color: #333;
-  line-height: 1.6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-/* קישורים */
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: #00a4e4;
-}
-
-/* מיכל מרכזי */
 .main-container {
-  max-width: 1200px;
-  width: 100%;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: box-shadow 0.3s ease;
+  font-family: Arial, sans-serif;
 }
 
-.main-container:hover {
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-/* כותרת */
 .header {
-  background-color: #007b9f;
+  background-color: #2b7cb8;
   color: white;
-  text-align: center;
   padding: 20px;
-  border-radius: 16px 16px 0 0;
-}
-
-.header h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-/* תוכן */
-.homepage-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding: 40px 20px;
-}
-
-.content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-/* כרטיסים */
-.form-card {
-  background-color: #ffffff;
-  max-width: 400px;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-/* טפסים */
-form {
+.categories-bar {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: center;
+  margin: 20px 0;
+  overflow-x: auto;
 }
 
-input,
-select,
-textarea {
-  padding: 15px;
-  font-size: 1rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  background-color: #f7fafc;
-  transition: all 0.3s ease;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  background-color: #ffffff;
-  border-color: #3182ce;
-  box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
-}
-
-/* כפתורים */
-button {
-  padding: 15px;
-  background-color: #3182ce;
-  color: white;
-  font-size: 1rem;
+.category-button {
+  margin: 0 10px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 10px;
+  background-color: #f1f1f1;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 16px;
+  border-radius: 5px;
 }
 
-button:hover {
-  background-color: #2b6cb0;
-  transform: scale(1.05);
+.category-button.active {
+  background-color: #2b7cb8;
+  color: white;
 }
 
-button:focus {
-  outline: none;
-  box-shadow: 0 0 5px rgba(49, 130, 206, 0.8);
-}
-
-/* ריספונסיביות */
-@media (max-width: 768px) {
-  .homepage-container {
-    grid-template-columns: 1fr;
-  }
-
-  .form-card {
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .header h1 {
-    font-size: 2rem;
-  }
+.products-container {
+  padding: 20px;
 }

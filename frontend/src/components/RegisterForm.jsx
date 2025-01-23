@@ -16,21 +16,22 @@ const RegisterForm = () => {
         },
         body: JSON.stringify({ username, password }),
       });
+
       const data = await response.json();
       if (response.ok) {
         alert("Registered successfully! Now you can log in.");
-        navigate("/login"); // מעבר לעמוד התחברות
+        navigate("/login"); // מעבר לעמוד ההתחברות
       } else {
         alert(data.error || "Registration failed!");
       }
     } catch (error) {
       console.error("Error registering:", error);
-      alert("An error occurred.");
+      alert("An error occurred. Please try again later.");
     }
   };
 
   return (
-    <form onSubmit={handleRegister}>
+    <form onSubmit={handleRegister} style={{ maxWidth: "400px", margin: "0 auto" }}>
       <h2>Register</h2>
       <input
         type="text"
@@ -38,6 +39,7 @@ const RegisterForm = () => {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         required
+        style={{ display: "block", margin: "10px 0", padding: "8px", width: "100%" }}
       />
       <input
         type="password"
@@ -45,11 +47,28 @@ const RegisterForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
+        style={{ display: "block", margin: "10px 0", padding: "8px", width: "100%" }}
       />
-      <button type="submit">Register</button>
-      <p>
+      <button
+        type="submit"
+        style={{
+          backgroundColor: "#38a169",
+          color: "white",
+          padding: "10px 20px",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer",
+          width: "100%",
+        }}
+      >
+        Register
+      </button>
+      <p style={{ marginTop: "10px" }}>
         Already have an account?{" "}
-        <span onClick={() => navigate("/login")} style={{ cursor: "pointer", color: "blue" }}>
+        <span
+          onClick={() => navigate("/login")}
+          style={{ cursor: "pointer", color: "blue" }}
+        >
           Log in here
         </span>
       </p>

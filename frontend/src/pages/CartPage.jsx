@@ -1,93 +1,90 @@
-import React, { useEffect, useState } from "react";
-import "../styles/CartPage.css";
+import React, { useState, useEffect } from "react";
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
-  const [selectedItems, setSelectedItems] = useState([]);
 
+  // טעינת הנתונים מ-localStorage בעת טעינת הדף
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(storedCart);
   }, []);
 
-  const resetCart = () => {
-    setCart([]);
-    localStorage.setItem("cart", JSON.stringify([]));
-    setSelectedItems([]);
-  };
+  const handleQuantityChange = (productId, delta) => {
+    const updatedCart = cart.map((item) => {
+      if (item._id === productId) {
+        const newQuantity = item.quantity + delta;
+        return { ...item, quantity: Math.max(1, newQuantity) }; // הכמות המינימלית היא 1
+      }
+      return item;
+    });
 
-  const toggleItemSelection = (index) => {
-    if (selectedItems.includes(index)) {
-      setSelectedItems(selectedItems.filter((i) => i !== index));
-    } else {
-      setSelectedItems([...selectedItems, index]);
-    }
-  };
-
-  const removeSelectedItems = () => {
-    const updatedCart = cart.filter((_, index) => !selectedItems.includes(index));
     setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    setSelectedItems([]);
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); // עדכון localStorage
   };
 
-  // Calculate total price of items in the cart
-  const calculateTotalPrice = () => {
-    return cart.reduce((total, item) => total + item.price, 0).toFixed(2);
+  const handleRemoveItem = (productId) => {
+    const updatedCart = cart.filter((item) => item._id !== productId);
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); // עדכון localStorage
   };
 
   return (
-    <div className="cart-container">
-      <h2>Your Cart</h2>
+    <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
+      <h2>Your Shopping Cart</h2>
       {cart.length === 0 ? (
-        <p className="empty-cart">Your cart is empty.</p>
+        <p>Your cart is empty!</p>
       ) : (
-        <>
-          <ul className="cart-list">
-            {cart.map((item, index) => (
-              <li key={index} className="cart-item">
-                <div className="item-details">
-                  <input
-                    type="checkbox"
-                    checked={selectedItems.includes(index)}
-                    onChange={() => toggleItemSelection(index)}
-                    className="item-checkbox"
-                  />
-                  <span>{item.name}</span>
-                </div>
-                <span className="item-price">${item.price.toFixed(2)}</span>
-              </li>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cart.map((item) => (
+              <tr key={item._id} style={{ borderBottom: "1px solid #ddd" }}>
+                <td>{item.name}</td>
+                <td>₪ {item.price.toFixed(2)}</td>
+                <td>
+                  <button
+                    onClick={() => handleQuantityChange(item._id, -1)}
+                    style={{ padding: "5px", marginRight: "5px" }}
+                  >
+                    -
+                  </button>
+                  {item.quantity}
+                  <button
+                    onClick={() => handleQuantityChange(item._id, 1)}
+                    style={{ padding: "5px", marginLeft: "5px" }}
+                  >
+                    +
+                  </button>
+                </td>
+                <td>₪ {(item.price * item.quantity).toFixed(2)}</td>
+                <td>
+                  <button
+                    onClick={() => handleRemoveItem(item._id)}
+                    style={{
+                      padding: "5px 10px",
+                      backgroundColor: "red",
+                      color: "#fff",
+                      border: "none",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
             ))}
-          </ul>
-          <div className="total-price">
-            <strong>Total: ${calculateTotalPrice()}</strong>
-          </div>
-        </>
+          </tbody>
+        </table>
       )}
-
-      <div className="button-container">
-        <button
-          className={`button remove-button ${
-            selectedItems.length === 0 ? "hidden" : ""
-          }`}
-          onClick={removeSelectedItems}
-          disabled={selectedItems.length === 0}
-        >
-          Remove Selected Items
-        </button>
-        <button className="button reset-button" onClick={resetCart}>
-          Reset Cart
-        </button>
-        <button
-          className={`button checkout-button ${cart.length === 0 ? "hidden" : ""}`}
-          onClick={() => alert("Checkout functionality is not implemented yet!")}
-        >
-          Proceed to Checkout
-        </button>
-        <button className="button back-button" onClick={() => window.history.back()}>
-          Back to Shop
-        </button>
-      </div>
     </div>
   );
 };

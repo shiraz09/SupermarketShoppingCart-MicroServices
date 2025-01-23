@@ -1,251 +1,135 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const SearchProducts = () => {
-  const categories = {
-    Fruits: [
-      { name: "Apple", price: 2 },
-      { name: "Banana", price: 1 },
-      { name: "Pineapple", price: 4 },
-      { name: "Orange", price: 3 },
-      { name: "Mango", price: 5 },
-      { name: "Grapes", price: 6 },
-      { name: "Peach", price: 4 },
-      { name: "Cherry", price: 7 },
-      { name: "Strawberry", price: 8 },
-      { name: "Blueberry", price: 9 },
-    ],
-    Vegetables: [
-      { name: "Carrot", price: 1 },
-      { name: "Tomato", price: 2 },
-      { name: "Cucumber", price: 1.5 },
-      { name: "Potato", price: 1 },
-      { name: "Spinach", price: 3 },
-      { name: "Onion", price: 1 },
-      { name: "Pepper", price: 2.5 },
-      { name: "Broccoli", price: 3 },
-      { name: "Lettuce", price: 2 },
-      { name: "Garlic", price: 2.5 },
-    ],
-    Snacks: [
-      { name: "Chips", price: 3 },
-      { name: "Cookies", price: 4 },
-      { name: "Popcorn", price: 2 },
-      { name: "Chocolate", price: 5 },
-      { name: "Candy", price: 3 },
-      { name: "Crackers", price: 2.5 },
-      { name: "Nuts", price: 6 },
-      { name: "Granola Bars", price: 4 },
-      { name: "Pretzels", price: 2 },
-      { name: "Biscuits", price: 3 },
-    ],
-    Beverages: [
-      { name: "Water", price: 1 },
-      { name: "Juice", price: 3 },
-      { name: "Soda", price: 2 },
-      { name: "Milk", price: 2.5 },
-      { name: "Coffee", price: 4 },
-      { name: "Tea", price: 3 },
-      { name: "Beer", price: 5 },
-      { name: "Wine", price: 10 },
-      { name: "Smoothie", price: 6 },
-      { name: "Lemonade", price: 3 },
-    ],
-    Bakery: [
-      { name: "Bread", price: 2 },
-      { name: "Bagel", price: 1.5 },
-      { name: "Croissant", price: 2.5 },
-      { name: "Muffin", price: 3 },
-      { name: "Cake", price: 4 },
-      { name: "Doughnut", price: 1.5 },
-      { name: "Pie", price: 5 },
-      { name: "Baguette", price: 3 },
-      { name: "Pita", price: 1 },
-      { name: "Roll", price: 1.2 },
-    ],
-    Meat: [
-      { name: "Chicken", price: 5 },
-      { name: "Beef", price: 10 },
-      { name: "Pork", price: 8 },
-      { name: "Turkey", price: 7 },
-      { name: "Fish", price: 6 },
-      { name: "Lamb", price: 12 },
-      { name: "Sausage", price: 4 },
-      { name: "Bacon", price: 5 },
-      { name: "Ham", price: 6 },
-      { name: "Duck", price: 9 },
-    ],
-    Dairy: [
-      { name: "Cheese", price: 3 },
-      { name: "Milk", price: 2 },
-      { name: "Butter", price: 2.5 },
-      { name: "Yogurt", price: 1.5 },
-      { name: "Cream", price: 3 },
-      { name: "Cottage Cheese", price: 2 },
-      { name: "Sour Cream", price: 2 },
-      { name: "Ice Cream", price: 4 },
-      { name: "Milkshake", price: 3 },
-      { name: "Whipped Cream", price: 3.5 },
-    ],
-    Cleaning: [
-      { name: "Detergent", price: 3 },
-      { name: "Soap", price: 2 },
-      { name: "Shampoo", price: 4 },
-      { name: "Toothpaste", price: 3 },
-      { name: "Toilet Paper", price: 2 },
-      { name: "Tissues", price: 1.5 },
-      { name: "Disinfectant", price: 4 },
-      { name: "Sponges", price: 2 },
-      { name: "Floor Cleaner", price: 3 },
-      { name: "Glass Cleaner", price: 3 },
-    ],
-    Frozen: [
-      { name: "Frozen Peas", price: 2 },
-      { name: "Frozen Pizza", price: 6 },
-      { name: "Frozen Berries", price: 4 },
-      { name: "Frozen Fries", price: 3 },
-      { name: "Frozen Corn", price: 2.5 },
-      { name: "Frozen Spinach", price: 3 },
-      { name: "Frozen Shrimp", price: 8 },
-      { name: "Frozen Chicken", price: 7 },
-      { name: "Frozen Bread", price: 4 },
-      { name: "Ice Cream", price: 5 },
-    ],
-    Baby: [
-      { name: "Diapers", price: 12 },
-      { name: "Baby Wipes", price: 5 },
-      { name: "Formula", price: 15 },
-      { name: "Baby Lotion", price: 4 },
-      { name: "Baby Shampoo", price: 3 },
-      { name: "Baby Powder", price: 2 },
-      { name: "Baby Food", price: 6 },
-      { name: "Pacifier", price: 3 },
-      { name: "Baby Bottle", price: 7 },
-      { name: "Teething Ring", price: 4 },
-    ],
-    Pets: [
-      { name: "Dog Food", price: 10 },
-      { name: "Cat Food", price: 8 },
-      { name: "Bird Seed", price: 5 },
-      { name: "Fish Food", price: 3 },
-      { name: "Pet Shampoo", price: 6 },
-      { name: "Pet Toys", price: 7 },
-      { name: "Litter Box", price: 15 },
-      { name: "Dog Leash", price: 12 },
-      { name: "Cat Collar", price: 10 },
-      { name: "Hamster Cage", price: 25 },
-    ],
-  };
+const SearchProducts = ({ selectedCategory }) => {
+  const [products, setProducts] = useState([]);
+  const [query, setQuery] = useState("");
 
-  const allProducts = Object.entries(categories).flatMap(([category, products]) =>
-    products.map((product) => ({ ...product }))
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const url = selectedCategory
+          ? `http://localhost:4012/get_products?category=${selectedCategory}`
+          : "http://localhost:4012/get_products";
+
+        const response = await fetch(url);
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [selectedCategory]);
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(query.toLowerCase())
   );
 
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
-  const [error, setError] = useState("");
+  return (
+    <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
+      <h2>Search Products</h2>
+      <input
+        type="text"
+        placeholder="Search by product name"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        style={{
+          padding: "10px",
+          fontSize: "1rem",
+          marginBottom: "20px",
+          border: "1px solid #ddd",
+          borderRadius: "5px",
+          width: "100%",
+        }}
+      />
+      <div
+        style={{
+          display: "grid",
+          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+        }}
+      >
+        {filteredProducts.map((product) => (
+          <ProductCard key={product._id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
-  const handleSearch = () => {
-    if (!query.trim()) {
-      setError("Please enter a search term.");
-      setResults([]);
-      return;
-    }
+const ProductCard = ({ product }) => {
+  const [quantity, setQuantity] = useState(1);
 
-    const filteredResults = allProducts.filter((product) =>
-      product.name.toLowerCase().startsWith(query.trim().toLowerCase())
-    );
+  const handleAddToCart = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingProduct = cart.find((item) => item._id === product._id);
 
-    if (filteredResults.length === 0) {
-      setError("No products found for the given query.");
+    if (existingProduct) {
+      existingProduct.quantity += quantity;
     } else {
-      setError("");
+      cart.push({ ...product, quantity });
     }
 
-    setResults(filteredResults);
-  };
-
-  const handleAddToCart = (product) => {
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const updatedCart = [...existingCart, product];
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    alert(`${product.name} added to cart!`);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${quantity} x ${product.name} added to cart!`);
+    setQuantity(1);
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
-      <h2>Search Products</h2>
-
-      {/* Search Input */}
-      <div style={{ marginBottom: "20px", display: "flex", justifyContent: "center" }}>
-        <input
-          type="text"
-          placeholder="Search by product name"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          style={{
-            padding: "10px",
-            fontSize: "1rem",
-            width: "70%",
-            borderRadius: "4px",
-            border: "1px solid #ddd",
-          }}
-        />
+    <div
+      style={{
+        border: "1px solid #ddd",
+        borderRadius: "5px",
+        padding: "10px",
+        textAlign: "center",
+      }}
+    >
+      <img
+        src={product.img}
+        alt={product.name}
+        style={{ maxWidth: "100%", borderRadius: "5px" }}
+      />
+      <h3>{product.name}</h3>
+      <p>₪ {product.price.toFixed(2)}</p>
+      <div style={{ margin: "10px 0" }}>
         <button
-          onClick={handleSearch}
+          onClick={() => setQuantity(Math.max(1, quantity - 1))}
           style={{
-            padding: "10px 20px",
-            marginLeft: "10px",
+            padding: "5px",
             fontSize: "1rem",
-            backgroundColor: "#3182ce",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
+            marginRight: "5px",
             cursor: "pointer",
           }}
         >
-          Search
+          -
+        </button>
+        <span>{quantity}</span>
+        <button
+          onClick={() => setQuantity(quantity + 1)}
+          style={{
+            padding: "5px",
+            fontSize: "1rem",
+            marginLeft: "5px",
+            cursor: "pointer",
+          }}
+        >
+          +
         </button>
       </div>
-
-      {/* Error Message */}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      {/* Search Results */}
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        {results.map((product, index) => (
-          <li
-            key={index}
-            style={{
-              marginBottom: "10px",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "4px",
-              textAlign: "left",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <div>
-              <strong>{product.name}</strong>  {product.price}$
-            </div>
-            <button
-              onClick={() => handleAddToCart(product)}
-              style={{
-                padding: "2px 6px",
-                fontSize: "1rem",
-                backgroundColor: "#38a169",
-                color: "white",
-                border: "none",
-                borderRadius: "4px",
-                cursor: "pointer",
-              }}
-            >
-              Add to Cart
-            </button>
-          </li>
-        ))}
-      </ul>
+      <button
+        onClick={handleAddToCart}
+        style={{
+          padding: "10px",
+          backgroundColor: "#007bff",
+          color: "#fff",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };

@@ -121,6 +121,16 @@ services:
     environment:
       - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
     restart: always
+  get_products:
+      build:
+        context: ./backend/get_products
+      container_name: get_products_service
+      ports:
+        - "4012:4012"
+      environment:
+        - MONGO_URI=mongodb+srv://moranavraham11:AW9ta2zrTeZiWdSh@cluster0.dogxq.mongodb.net/shopping_cart?retryWrites=true&w=majority&appName=Cluster0
+      restart: always
+
 
   add_product_nodejs:
     build:
