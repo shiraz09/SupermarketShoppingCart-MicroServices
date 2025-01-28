@@ -137,3 +137,12 @@ services:
     ports:
       - "5001:5001"
     restart: always
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend_service
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    restart: always
